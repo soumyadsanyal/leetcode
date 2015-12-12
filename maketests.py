@@ -8,7 +8,7 @@ def make_random_list_suite(population, numbercases, filename):
         make_list(population,term,filename,overwrite=False)
     
 
-def make_list(population, length, filename, overwrite=False):
+def make_list(population, length, filename, otherlines=2, overwrite=False):
     if length==0:
         result=[]
     result=random.sample(population, length)
@@ -19,11 +19,18 @@ def make_list(population, length, filename, overwrite=False):
     with open(filename,option) as f:
         if result==[]:
             f.write("[]\n")
+            for term in range(otherlines):
+                f.write("%s\n"%0)
             return 1
         f.write("[")
         for index in range(max(0,len(result)-2)):
             f.write("%d,"%result[index])
         f.write("%d]\n"%result[-1])
+        top=0
+        for term in range(otherlines):
+            a=random.randint(top,len(result)-1)
+            f.write("%s\n"%random.randint(top,len(result)-1))
+            top=a
     return 1
 
 
