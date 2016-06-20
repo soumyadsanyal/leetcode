@@ -2,17 +2,22 @@
 #include <string.h>
 #include <stdlib.h>
 
-int length(char*);
+//int length(char*);
 void reverse_it(char*, char*);
 
 int main(void){
 
 char* a;
+char* b;
 
 scanf("%s", a);
-int l = length(a);
+//int l = length(a);
 //printf("length is %d\n", l);
-char* b = malloc(l);
+int l=0;
+char* temp = a;
+while (*a!='\0') {a++; l++;}
+a=temp;
+b = malloc(l);
 reverse_it(a, b);
 printf("You entered %s, which gives %s\n", a, b);
 
@@ -26,25 +31,28 @@ return 0;
 void reverse_it(char* a, char* b ){
 
 	int i;
-	int l=length(a);
-	char* c = b;
+	char* temp_1 = a;
+	char* temp_2 = b;
 
+//move to end of first string
 	while(*a != '\0'){a++;}
 
-	for(i=0; i<l; i++){
+// backtrack and copy to b
+	while(a>temp_1){
 	a--;
-	*b = *a;
-//	printf("pointer b holds %c\n", *b);
+	*(b) = *(a);
+	printf("pointer a holds %c\n", *a);
+	printf("pointer b holds %c\n", *b);
 	b++;
 	}
 	*(b++)='\0';
-	b=c;
+	b=temp_2;
 	printf("%s\n", b);
 
 return;
 }
 
-
+/*
 int length(char* a){
 
 	int i;
@@ -59,5 +67,5 @@ int length(char* a){
 	return length;
 
 }
-
+*/
 
